@@ -62,7 +62,7 @@ class LocationTable extends BaseTable
 
         $this->addColumn(
             name: 'avatar_id',
-            label: __('location::general.branch'),
+            label: __('location::general.location_image'),
             type: 'image',
             sortable: false,
             mergeGroup:"bank_branch",
@@ -86,7 +86,7 @@ class LocationTable extends BaseTable
             class:'dir-ltr',
             options: [
                 'groupBodyTooltip' => fn($row) => groupBodyTooltip(
-                    value: $row->updated_at,
+                    value: verta()->parse($row->updated_at)->format(jdateFormat()),
                     title: "تاریخ آخرین بروزرسانی",
                     valueClass: 'dir-ltr text-left'
                 )

@@ -47,6 +47,8 @@
                     :from-min-date="now()"
                     :fromValue="old('published_at') ? verta()->parse(old('published_at'))->toCarbon() : ($bank->published_at ? verta()->parseFormat(jdateFormat(), $bank->published_at)->toCarbon() : null)"
                     :toValue="old('expired_at') ? verta()->parse(old('expired_at'))->toCarbon() : ($bank->expired_at ? verta()->parseFormat(jdateFormat(), $bank->expired_at)->toCarbon() : null)"
+{{--                    :fromValue="old('published_at') ? verta()->parse(old('published_at'))->toCarbon() : null"--}}
+{{--                    :toValue="old('expired_at') ? verta()->parse(old('expired_at'))->toCarbon() : null"--}}
                 />
 
                 <x-color-input

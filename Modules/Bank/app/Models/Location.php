@@ -84,6 +84,8 @@ class Location extends Model
 
     public function getFullNameAttribute(): string
     {
-        return "{$this->branch} {$this->square}";
+        return "شعبه{$this->branch}
+        -
+         میدان {$this->square}";
     }
 }
