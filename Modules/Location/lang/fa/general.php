@@ -1,6 +1,7 @@
 <?php
 return[
     'branch'=>'شعبه',
+    'sort'=>'مرتب سازی',
     'square'=>'میدان',
     'street'=>'خیابان',
     'alley'=>'کوچه',

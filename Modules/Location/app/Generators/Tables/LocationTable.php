@@ -98,6 +98,12 @@ class LocationTable extends BaseTable
             label: __('location::general.alley'),
         );
 
+
+        $this->addColumn(
+            name: 'sort',
+            label: __('location::general.sort'),
+        );
+
         $this->addColumn(
             name: 'is_active',
             label:__('location::general.is_active'),
@@ -143,7 +149,7 @@ class LocationTable extends BaseTable
             name: 'branch',
             elementName: 'filter_branch',
             elementType: 'text',
-            label: __('location::general.square'),
+            label: __('location::general.branch'),
             operator: '%'
         );
 
@@ -151,7 +157,7 @@ class LocationTable extends BaseTable
             name: 'square',
             elementName: 'filter_square',
             elementType: 'text',
-            label:  __('location::general.street'),
+            label:  __('location::general.square'),
             operator: '%',
 //            options: [
 //                'direction' => 'ltr',
