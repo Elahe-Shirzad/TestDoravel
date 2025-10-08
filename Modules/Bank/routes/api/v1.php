@@ -1,6 +1,6 @@
 <?php
 
-use Modules\BaseModule\Http\Controllers\Api\DateTimeController;
+use Modules\Bank\Http\Controllers\Api\DateTimeController;
 
 Route::prefix('date-time')
     ->name('date-time.')

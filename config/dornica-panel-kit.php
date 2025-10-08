@@ -47,40 +47,106 @@ return [
         ]
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Theme
-    |--------------------------------------------------------------------------
-    */
+//    /*
+//    |--------------------------------------------------------------------------
+//    | Theme
+//    |--------------------------------------------------------------------------
+//    */
+//
+//    'current_theme' => 'default',
+//
+//    'theme' => [
+//        'assets' => [
+//            'favicon' => 'vendor/dornica/panel-kit/images/default/favicon.ico',
+//
+//            'default_logo' => 'vendor/dornica/panel-kit/images/default/default.png',
+//
+//            'css' => [
+//                // project customizations
+//                //
+//            ],
+//
+//            'js' => [
+//                // project customizations
+//                //
+//            ],
+//
+//            'pre_scripts' => [
+//
+//            ],
+//
+//            'additional_blades' => [
+//                // Add blades here
+//                // Example: 'components.custom-footer',
+//            ],
+//        ],
+//    ],
+//
+//    /*
+//    |--------------------------------------------------------------------------
+//    | Components
+//    |--------------------------------------------------------------------------
+//    */
+//
+//    'components' => [
+//        'number_input' => [
+//            'text_align' => 'right'
+//        ],
+//        'date_pickers' => [
+//            'text_align' => 'right',
+//            'date_format' => null,
+//            'datetime_format' => null,
+//            'time_format' => null,
+//            'allow_typing' => false,
+//            'disabled_days' => null,
+//            'auto_close' => true,
+//            'allow_same_day_selection' => true
+//        ],
+//        'select' => [
+//            'multi_allow_select_all' => null,
+//            'multi_display_selected_as_count' => null,
+//        ],
+//        'data_item' => [
+//            'default_value' => null,
+//        ]
+//    ],
+//];
 
-    'current_theme' => 'default',
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Theme
+|--------------------------------------------------------------------------
+*/
+
+'current_theme' => 'default',
 
     'theme' => [
-        'assets' => [
-            'favicon' => 'vendor/dornica/panel-kit/images/default/favicon.ico',
+    'assets' => [
+        'favicon' => 'assets/image/favicon.png',
 
-            'default_logo' => 'vendor/dornica/panel-kit/images/default/default.png',
+        'default_logo' => 'assets/image/logo.png',
 
-            'css' => [
-                // project customizations
-                //
-            ],
+        'css' => [
+            // project customizations
+            'assets/theme/css/variables.css',
+            'assets/custom/css/style.css'
+        ],
 
-            'js' => [
-                // project customizations
-                //
-            ],
+        'js' => [
+            // project customizations
+            'assets/custom/js/script.js'
+        ],
 
-            'pre_scripts' => [
 
-            ],
+        'pre_scripts' => [
 
-            'additional_blades' => [
-                // Add blades here
-                // Example: 'components.custom-footer',
-            ],
         ],
     ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -89,25 +155,30 @@ return [
     */
 
     'components' => [
-        'number_input' => [
-            'text_align' => 'right'
-        ],
-        'date_pickers' => [
-            'text_align' => 'right',
-            'date_format' => null,
-            'datetime_format' => null,
-            'time_format' => null,
-            'allow_typing' => false,
-            'disabled_days' => null,
-            'auto_close' => true,
-            'allow_same_day_selection' => true
-        ],
-        'select' => [
-            'multi_allow_select_all' => null,
-            'multi_display_selected_as_count' => null,
-        ],
-        'data_item' => [
-            'default_value' => null,
-        ]
+    'number_input' => [
+        'text_align' => 'right'
     ],
+    'date_pickers' => [
+        'text_align' => 'right',
+        'date_format' => null,
+        'datetime_format' => null,
+        'time_format' => null,
+        'allow_typing' => true,
+        'disabled_days' => null,
+        'auto_close' => true,
+        'allow_same_day_selection' => false
+    ],
+    'select' => [
+        'multi_allow_select_all' => true,
+        'multi_display_selected_as_count' => true,
+    ],
+    'data_item' => [
+        'default_value' => '-',
+    ]
+],
 ];
+
+
+
+
+

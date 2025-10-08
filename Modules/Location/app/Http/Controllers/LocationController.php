@@ -3,10 +3,16 @@
 namespace Modules\Location\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Dornica\Foundation\Core\Enums\IsActive;
 use Dornica\PanelKit\BladeLayout\Facade\BladeLayout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Modules\Bank\Enums\Files\FileType;
+use Modules\Bank\Models\Bank;
+use Modules\Bank\Models\BankLocation;
 use Modules\Bank\Models\Location;
 use Modules\Location\Generators\Tables\LocationTable;
+use Modules\Location\Http\Requests\LocationStoreRequest;
 
 class LocationController extends Controller
 {
@@ -24,13 +30,65 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('location::create');
+
+        $isActive = prepareSelectComponentData(
+            source: IsActive::class,
+            moduleName: 'location'
+        );
+
+        $avatarFileTypeInfo = getFileType(FileType::LOCATION, 'location_avatar');
+        $avatarFileType = getUploadRequirements($avatarFileTypeInfo);
+
+        return view('location::create',compact('isActive','avatarFileType'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {}
+    public function store(LocationStoreRequest $request) {
+
+
+        $data = array_merge($request->only([
+            'branch',
+            'square',
+            'street',
+            'alley',
+            'color',
+            'is_active',
+            'service',
+            'full_address',
+            'description',
+            'published_at',
+            'expired_at',
+        ]), [
+            'sort' => getNextSortValue(new Location()),
+            'avatar' => null
+        ]);
+
+        try {
+
+            $location = Location::create($data);
+
+            uploadFile(
+                module: 'Location',
+                field: 'avatar',
+                dbField: 'avatar_id',
+                fileTypeCode: 'location_avatar',
+                fileType: FileType::LOCATION,
+                entity: $location
+            );
+
+            return redirect()
+                ->route('admin.base-information.locations.index')
+                ->withFlash(
+                    type: 'success',
+                    message: "درج با موفقیت انجام شد",
+                );
+        } catch (Exception $exception) {
+            Log::error($exception);
+            return backWithError('خطایی رخ داده است');
+        }
+    }
 
     /**
      * Show the specified resource.

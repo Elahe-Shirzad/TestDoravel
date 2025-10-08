@@ -24,7 +24,7 @@ Route::prefix('locations')->as('locations.')->controller(LocationController::cla
 
     Route::post('store', 'store')->name('store');
 
-    Route::prefix('{bank}')->group(function () {
+    Route::prefix('{location}')->group(function () {
 
         Route::get('show', 'show')
             ->name('show')

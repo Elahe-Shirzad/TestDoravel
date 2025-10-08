@@ -10,6 +10,7 @@ use Dornica\Foundation\Core\Enums\IsActive;
 use Dornica\Foundation\Core\Traits\SoftDeletes;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Bank\Traits\FormattedDate;
 use Modules\Location\Enums\Service;
 
 
@@ -17,7 +18,7 @@ use Modules\Location\Enums\Service;
  * Class Location
  *
  * @property int $id
- * @property string|null $square
+ * @property string $square
  * @property string|null $street
  * @property string|null $alley
  * @property string $branch
@@ -30,6 +31,7 @@ use Modules\Location\Enums\Service;
  * @property int|null $avatar_id
  * @property string|null $color
  * @property string|null $description
+ * @property string $full_address
  * @property Carbon|null $published_at
  * @property Carbon|null $expired_at
  * @property int $service
@@ -40,7 +42,7 @@ use Modules\Location\Enums\Service;
  */
 class Location extends Model
 {
-	use SoftDeletes;
+	use SoftDeletes, FormattedDate;
 	protected $table = 'locations';
 	public static $snakeAttributes = false;
 
@@ -67,6 +69,7 @@ class Location extends Model
 		'avatar_id',
 		'color',
 		'description',
+		'full_address',
 		'published_at',
 		'expired_at',
 		'service'

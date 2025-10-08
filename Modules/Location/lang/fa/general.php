@@ -13,4 +13,5 @@ return[
     'updated_at'=>'تاریخ آخرین بروز رسانی',
     'created_at'=>'تاریخ ایجاد',
     'location_image'=>'تصویر مکان',
+    'full_address'=>'آدرس کامل',
 ];

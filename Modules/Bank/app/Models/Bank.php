@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Bank\Enums\BankType;
+use Modules\Bank\Traits\FormattedDate;
 
 /**
  * Class Bank
@@ -39,7 +40,7 @@ use Modules\Bank\Enums\BankType;
  */
 class Bank extends Model
 {
-	use SoftDeletes;
+	use SoftDeletes, FormattedDate;
 	protected $table = 'banks';
 	public static $snakeAttributes = false;
 

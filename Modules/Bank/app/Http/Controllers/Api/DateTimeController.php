@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\BaseModule\Http\Controllers\Api;
+namespace Modules\Bank\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Schema;
-use Modules\BaseModule\Http\Requests\RegenerateUpdatedAtRequest;
+use Modules\Bank\Http\Requests\RegenerateUpdatedAtRequest;
 
 class DateTimeController extends Controller
 {

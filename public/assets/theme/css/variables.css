@@ -1,0 +1,142 @@
+:root,
+[data-bs-theme="light"] {
+    /*
+    ==============================
+    THEME COLOR DEFINITIONS
+    bs-* are bootstrap colors
+    x-* are custom colors
+    ==============================
+    */
+
+    /* Primary */
+    --bs-primary: #66bbda;
+    --bs-primary-active: #5ca8c4;
+    --x-primary-active-2: #5296ae;
+    --x-primary-clarity-20: #478399;
+    --x-primary-clarity-25: #3d7083;
+    --x-primary-light: #ecfdf5;
+    --x-primary-light-2: #f2faf6;
+    --bs-primary-light: var(--x-primary-light);
+
+    /* Success */
+    --bs-success: #22c55e;
+    --bs-success-active: #15803d;
+    --x-success-clarity-20: #22c55e33;
+    --x-success-light: #f0fdf4;
+    --bs-success-light: var(--x-success-light);
+
+    /* Danger */
+    --bs-danger: #f8285a;
+    --bs-danger-active: #d81a48;
+    --x-danger-clarity-20: #f8285a33;
+    --x-danger-light: #ffeef3;
+    --bs-danger-light: var(--x-danger-light);
+
+    /* Info */
+    --bs-info: #1b84ff;
+    --bs-info-active: #056ee9;
+    --x-info-clarity-20: #1b84ff33;
+    --x-info-light: #eff6ff;
+    --bs-info-light: var(--x-info-light);
+
+    /* Info-2 */
+    --x-info-2: #7239ea;
+    --x-info-2-active: #5014d0;
+    --x-info-2-clarity-20: #7239ea33;
+    --x-info-2-light: #f8f5ff;
+    --bs-info-2-light: var(--x-info-2-light);
+
+    /* Warning */
+    --bs-warning: #f6b100;
+    --bs-warning-active: #dfa000;
+    --x-warning-clarity-20: #f6b10033;
+    --x-warning-light: #fff8dd;
+    --bs-warning-light: var(--x-warning-light);
+
+    /* Secondary */
+    --bs-secondary: #f9f9f9;
+    --bs-secondary-active: #f9f9f9;
+    --x-secondary-clarity-20: #f9f9f933;
+    --x-secondary-light: #f9f9f9;
+    --bs-secondary-light: var(--x-secondary-light);
+
+    /* Light */
+    --bs-light: #ffffff;
+    --bs-light-active: #fcfcfc;
+    --x-light-clarity-20: #ffffff33;
+    --x-light-light: #ffffff;
+
+    /* Dark */
+    --bs-dark: #1e2129;
+    --bs-dark-active: #111318;
+    --x-dark-clarity-20: #1e212933;
+    --x-dark-light: #f9f9f9;
+    --x-dark-clarity-3: #00000008;
+
+    /* Gray */
+    --bs-gray-100: #f9f9f9;
+    --bs-gray-200: #f1f1f4;
+    --bs-gray-300: #dbdfe9;
+    --bs-gray-400: #c4cada;
+    --bs-gray-500: #99a1b7;
+    --bs-gray-600: #78829d;
+    --bs-gray-700: #4b5675;
+    --bs-gray-800: #252f4a;
+    --bs-gray-900: #071437;
+    --bs-gray-1000: #1b1b28;
+
+    --bs-text-white: #ffffff;
+    --bs-text-black: #000000;
+
+    --bs-text-primary: var(--bs-primary);
+    --bs-text-secondary: var(--bs-secondary);
+    --bs-text-light: var(--bs-light);
+    --bs-text-success: var(--bs-success);
+    --bs-text-info: var(--bs-info);
+    --bs-text-warning: var(--bs-warning);
+    --bs-text-danger: var(--bs-danger);
+    --bs-text-dark: var(--bs-dark);
+    --bs-text-muted: var(--bs-gray-500);
+    --bs-text-gray-100: var(--bs-gray-100);
+    --bs-text-gray-200: var(--bs-gray-200);
+    --bs-text-gray-300: var(--bs-gray-300);
+    --bs-text-gray-400: var(--bs-gray-400);
+    --bs-text-gray-500: var(--bs-gray-500);
+    --bs-text-gray-600: var(--bs-gray-600);
+    --bs-text-gray-700: var(--bs-gray-700);
+    --bs-text-gray-800: var(--bs-gray-800);
+    --bs-text-gray-900: var(--bs-gray-900);
+
+    /*
+    ==============================
+    THEME VARIABLE DEFINITIONS
+    bs-* are bootstrap variables
+    x-* are custom variables
+    ==============================
+    */
+
+    --bs-app-sidebar-width: 256px;
+
+    /* Radius */
+    --x-radius-xs: 4px;
+    --x-radius-sm: 6px;
+    --x-radius-md: 8px;
+    --x-radius-lg: 10px;
+    --x-radius-xl: 12px;
+
+    /* Font */
+    --x-font-size-xs: 12px;
+    --x-font-size-sm: 14px;
+    --x-font-size-md: 16px;
+    --x-font-size-lg: 18px;
+    --x-font-size-xl: 20px;
+    --x-font-size-2xl: 24px;
+    --x-font-size-3xl: 32px;
+    --x-font-size-4xl: 40px;
+    --x-font-size-5xl: 48px;
+    --x-font-size-6xl: 56px;
+    --x-font-size-7xl: 64px;
+
+    /* Custom Variables */
+    --x-form-element-bg: #ffffff;
+}

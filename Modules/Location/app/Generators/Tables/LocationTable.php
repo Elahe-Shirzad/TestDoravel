@@ -82,10 +82,11 @@ class LocationTable extends BaseTable
         $this->addColumn(
             name: 'created_at',
             label: __('location::general.created_at'),
-            type:'datetime',
+            type:'date',
+            class:'dir-ltr',
             options: [
                 'groupBodyTooltip' => fn($row) => groupBodyTooltip(
-                    value: verta()->parse($row->updated_at)->format(jdateFormat()),
+                    value: $row->updated_at,
                     title: "تاریخ آخرین بروزرسانی",
                     valueClass: 'dir-ltr text-left'
                 )
@@ -152,11 +153,11 @@ class LocationTable extends BaseTable
             elementType: 'text',
             label:  __('location::general.street'),
             operator: '%',
-            options: [
-                'direction' => 'ltr',
-        'prefix' => 'ریال',
-        'hint' => 'مقدار عددی را وارد کنید',
-            ]
+//            options: [
+//                'direction' => 'ltr',
+//        'prefix' => 'ریال',
+//        'hint' => 'مقدار عددی را وارد کنید',
+//            ]
         );
 
         $this->addFilter(
@@ -242,7 +243,13 @@ class LocationTable extends BaseTable
      */
     public function toolbar(): void
     {
-        //
+        $this->addToolbarButton(
+            title: 'درج آدرس جدید',
+            route: route('admin.base-information.locations.create'),
+            icon: 'fa-solid fa-plus',
+            variant: 'primary',
+            permission: 'admin.base-information.locations.create',
+        );
     }
 
     /**

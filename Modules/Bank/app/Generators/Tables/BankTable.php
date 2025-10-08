@@ -192,7 +192,7 @@ class BankTable extends BaseTable
             route: route('admin.base-information.banks.create'),
             icon: 'fa-solid fa-plus',
             variant: 'success',
-            permission: 'admin.base-information.banks.create'
+            permission: 'admin.base-information.banks.create',
         );
     }
 

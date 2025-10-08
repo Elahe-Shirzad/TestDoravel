@@ -13,6 +13,7 @@
                     required
                     container-class="col-12 col-md-6"
                     name="name"
+                    id="name"
                     label="نام"
                     value="{{old('name')}}"
                 />
@@ -139,6 +140,25 @@
         @canAccess('admin.base-information.banks.store')
         {!! FormValidator::formRequest(\Modules\Bank\Http\Requests\StoreRequest::class,"#create_bank") !!}
         @endcanAccess
+
+            <script>
+                $(function () {
+                    $('#name').on('keydown keyup change', function () {
+                        $('#code').val($(this).val().substring(0, 128));
+                    });
+
+                    // $('#small_description').on('keydown keyup change', function () {
+                    //     const cleaned = cleanText($(this).val());
+                    //     let text = cleaned.substring(0, 255);
+                    //
+                    //     // Update the span content correctly
+                    //     updateComponentCounter('.seo_description_container', text);
+                    //
+                    //     // Set cleaned text back to textarea
+                    //     $('#seo_description').val(text);
+                    // });
+                });
+            </script>
     @endpush
 
 </x-default-layout>
