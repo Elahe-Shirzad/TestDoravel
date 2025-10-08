@@ -1,0 +1,22 @@
+<?php
+return[
+    'code'=>'کد بانک',
+    'name'=>'نام',
+    'type'=>'نوع بانک',
+    'is_active'=>'وضعیت',
+    'published_at'=>'تاریخ انتشار',
+    'expired_at'=>'تاریخ انقضا',
+    'updated_at'=>'تاریخ آخرین بروز رسانی',
+    'created_at'=>'تاریخ ایجاد',
+    'description'=>'توضیحات',
+    'color'=>'رنگ',
+    'location_id'=>'شعبات بانک',
+    'bank_image'=>'تصویر بانک',
+    'bank_info'=>'اطلاعات بانک',
+    'bank_branch'=>'شعبات بانک',
+    'views_count'=>'تعداد بازدیدکنندگان',
+    'comments_count'=>'تعداد نظرات',
+    'followers_count'=>'تعداد دنبال کنندگان',
+    'reactions_count'=>'تعداد بازخوردها',
+    'section_stats'=>'آمارها',
+];

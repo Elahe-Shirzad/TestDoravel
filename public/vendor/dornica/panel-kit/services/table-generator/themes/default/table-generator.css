@@ -1,0 +1,295 @@
+table.x-table-generator {
+    border: 0;
+    width: 100%;
+    /* Prevent wrapping in table cells by default */
+}
+
+table.x-table-generator .form-check {
+    padding-right: 0;
+}
+
+/* Dropdown styles */
+table.x-table-generator .dropdown .dropdown-menu {
+    max-height: 168px;
+    overflow: auto;
+    z-index: 1070;
+    border: 1px solid var(--bs-gray-300);
+    border-radius: var(--x-radius-sm);
+    box-shadow: rgba(0, 0, 0, 0.061) 0 1px 3px;
+}
+
+table.x-table-generator .dropdown {
+    position: relative;
+}
+
+#x-filter-accordion {
+    border-radius: 8px;
+}
+
+/* Responsive table overflow */
+.table-responsive {
+    overflow-y: visible;
+    -webkit-overflow-scrolling: auto;
+}
+
+.x-table-generator.table:not(.table-bordered) td:last-child,
+.x-table-generator.table:not(.table-bordered) th:last-child {
+    padding-left: 1.5rem;
+}
+
+.x-table-generator.table:not(.table-bordered) td:first-child,
+.x-table-generator.table:not(.table-bordered) th:first-child {
+    padding-right: 1.5rem;
+}
+
+table.x-table-generator tr td,
+table.x-table-generator tr th {
+    border-bottom: 1px solid var(--bs-gray-300) !important;
+    vertical-align: middle;
+}
+
+table.x-table-generator thead tr th i {
+    line-height: 0.25rem !important;
+}
+
+table.x-table-generator tbody tr td > div {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--bs-gray-700);
+}
+
+.x-toolbar-card {
+    border-radius: var(--x-radius-xl) var(--x-radius-xl) 0 0;
+}
+
+.x-toolbar-card .card-body {
+    padding: 13px;
+}
+
+.x-table-card .card-body {
+    padding: 16px;
+    border-radius: var(--x-radius-md);
+}
+
+.x-table-card {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.03);
+    border-radius: 0 0 var(--x-radius-xl) var(--x-radius-xl);
+}
+
+table thead tr th .title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--bs-gray-800);
+    line-height: 16px;
+}
+
+table thead tr td > div {
+    color: var(--bs-gray-700);
+    font-size: 14px;
+    line-height: 14px;
+}
+
+table.x-table-generator thead > tr {
+    border-bottom: 1px solid var(--bs-gray-300) !important;
+}
+
+.table tbody tr td .x-text-content .badge {
+    margin: 3px;
+}
+
+.x-table-pagination .table-sub-info {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.x-table-pagination .table-sub-info span:not(.badge) {
+    font-size: 16px;
+    color: var(--bs-gray-600);
+    line-height: 18px;
+}
+
+.x-table-pagination .table-sub-info span:has(.badge) {
+    line-height: 12px;
+}
+
+.page-item:has(.disabled) {
+    color: var(--bs-gray-700);
+    font-weight: 600;
+    line-height: 18px;
+}
+
+.page-item:hover:not(.active):not(.offset):not(.disabled) .page-link .svg-icon,
+.page-item:hover:not(.active):not(.offset):not(.disabled) .page-link i {
+    color: var(--bs-primary);
+}
+
+.x-table-pagination .table-sub-info .badge {
+    padding: 5px;
+    line-height: 10px;
+}
+
+.x-table-page-count-container .select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered {
+    padding-right: 0;
+}
+
+#x-component-tablePageCount + .select2-container .select2-dropdown {
+    width: 100% !important;
+}
+
+.x-dropdown-button-component .dropdown-menu {
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+.x-dropdown-button-component > button {
+    line-height: 10px;
+}
+
+.x-dropdown-button-component .dropdown-menu {
+    width: 100%;
+}
+
+.x-table-page-count-container {
+    border-radius: var(--x-radius-sm);
+}
+
+.x-filter-info {
+    display: flex;
+    gap: 10px;
+}
+
+.x-filter-info:empty {
+    display: none;
+}
+
+.x-filter-info {
+    margin: 0 auto 16px;
+}
+
+.x-filter-info .badge {
+    border: 1px solid var(--bs-gray-300);
+    border-radius: var(--x-radius-xs);
+}
+
+.x-filter-info .x-filter-clear {
+    cursor: pointer;
+    border: 1px solid var(--x-danger-clarity-20);
+    border-radius: var(--x-radius-xs);
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
+.x-filter-info .badge span {
+    max-width: 150px;
+}
+
+.x-remove-badge {
+    cursor: pointer;
+}
+
+.x-filter-info {
+    padding: 0 16px;
+    background-color: var(--bs-gray-100);
+    border-radius: 0 0 var(--x-radius-sm) var(--x-radius-sm);
+}
+
+.x-filter-pb-16 {
+    padding-bottom: 16px;
+}
+
+table .dropdown-toggle::after {
+    display: none;
+}
+
+.x-table-page-count-container .x-dropdown-item-component .dropdown-menu-item {
+    cursor: pointer;
+}
+
+table.x-table-generator .dropdown .dropdown-menu {
+    padding: 5px;
+}
+
+table.x-table-generator .dropdown .dropdown-menu li:hover a,
+table.x-table-generator .dropdown .dropdown-menu li:hover button {
+    background-color: var(--x-primary-light);
+    color: var(--bs-primary);
+}
+
+table.x-table-generator .dropdown .dropdown-menu li:hover {
+    background-color: var(--x-primary-light) !important;
+    color: var(--bs-primary) !important;
+}
+
+/*******************************
+        custom table
+*****************************/
+
+.x-input-wrapper input {
+    height: 40px !important;
+    padding-right: 28px;
+    background-color: var(--bs-light);
+}
+
+.x-input-wrapper input::placeholder {
+    padding-right: 10px;
+    color: var(--bs-gray-500);
+}
+
+.x-input-wrapper i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    color: var(--bs-gray-500);
+    font-size: 16px;
+    transform: translateY(-50%);
+}
+
+.x-filter-btn-collapse {
+    .x-component-button-icon {
+        transition: all 0.2s ease;
+    }
+    &:not(.collapsed) {
+        .x-component-button-icon {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.x-table-generator .centered-table-content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.x-table-generator .centered-table-content * {
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.x-table-generator .table-content-align-left,
+.x-table-generator .table-content-align-right,
+.x-table-generator .table-content-align-center {
+    display: flex;
+}
+
+.x-table-generator .table-content-align-left,
+.x-table-generator .table-content-align-left * {
+    justify-content: left !important;
+    text-align: left !important;
+}
+
+.x-table-generator .table-content-align-right,
+.x-table-generator .table-content-align-right * {
+    justify-content: right !important;
+    text-align: right !important;
+}
+
+.x-table-generator .table-content-align-center,
+.x-table-generator .table-content-align-center * {
+    justify-content: center !important;
+    text-align: right !important;
+}

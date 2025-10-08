@@ -1,0 +1,10 @@
+{
+    "User account is banned to login.": "حساب کاربری مسدود می باشد.",
+    "User account must be activated before login.": "حساب کاربری شما نیاز به فعالسازی دارد.",
+    "User account is inactive.": "حساب کاربری غیرفعال می باشد.",
+    "Both language and portal changed successfully.": "زبان و پورتال با موفقیت تغییر کردند.",
+    "Language changed successfully.": "زبان با موفقیت تغییر کرد.",
+    "Portal changed successfully.": "پورتال با موفقیت تغییر کرد.",
+    "Language and portal stayed unchanged.": "زبان و پورتال بدون تغییر باقی ماندند.",
+    "CSRF token mismatch.": "صفحه منقضی شده، لطفاً صفحه را دوباره بارگذاری کرده و مجدداً تلاش کنید."
+}
