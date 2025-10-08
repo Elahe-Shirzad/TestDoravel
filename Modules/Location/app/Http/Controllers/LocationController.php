@@ -13,6 +13,7 @@ use Modules\Bank\Models\BankLocation;
 use Modules\Bank\Models\Location;
 use Modules\Location\Generators\Tables\LocationTable;
 use Modules\Location\Http\Requests\LocationStoreRequest;
+use Modules\Location\Http\Requests\LocationUpdateRequest;
 
 class LocationController extends Controller
 {
@@ -103,16 +104,87 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        return view('location::edit',compact($location));
+
+        $avatarFileTypeInfo = getFileType(FileType::LOCATION, 'location_avatar');
+
+        $avatarFileType = getUploadRequirements(
+            documentType: $avatarFileTypeInfo,
+            entity: Location::class,
+            entityId: $location->id,
+            entityFileRelation: 'avatar'
+        );
+
+        $isActive = prepareSelectComponentData(
+            source: IsActive::class,
+            moduleName: 'location'
+        );
+
+
+        return view('location::edit',compact('location','avatarFileType','isActive'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id) {}
+    public function update(LocationUpdateRequest $request, Location $location) {
+        try {
+
+            $data = $request->only([
+                'branch',
+                'square',
+                'street',
+                'alley',
+                'color',
+                'is_active',
+                'service',
+                'full_address',
+                'description',
+                'published_at',
+                'expired_at',
+            ]);
+
+            $location->update($data);
+
+
+            uploadFile(
+                module: 'location',
+                field: 'avatar',
+                dbField: 'avatar_id',
+                fileTypeCode: 'location_avatar',
+                fileType: FileType::LOCATION,
+                entity: $location
+            );
+
+            return redirect()
+                ->route('admin.base-information.locations.index')
+                ->withFlash(
+                    type: 'success',
+                    message: "بروزرسانی با موفقیت انجام شد",
+                );
+        } catch (Exception $exception) {
+            Log::error($exception);
+            return backWithError('بروزرسانی با خطا مواجه شد');
+        }
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id) {}
+    public function destroy(Location $location) {
+
+        try {
+            $location->delete();
+
+            return redirect()
+                ->route('admin.base-information.locations.index')
+                ->withFlash(
+                    type: 'success',
+                    message: "حذف با موفقیت انجام شد",
+                );
+        } catch (Exception $exception) {
+            Log::error($exception);
+            return backWithError('حذف با خطا مواجه شد');
+        }
+    }
+
 }
