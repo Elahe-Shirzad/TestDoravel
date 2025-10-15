@@ -7,6 +7,7 @@
 namespace Modules\Bank\Models;
 
 use Carbon\Carbon;
+use Dornica\Foundation\Core\Enums\IsDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Dornica\Foundation\Core\Traits\SoftDeletes;
 
@@ -35,7 +36,7 @@ class BankLocation extends Model
 	protected $casts = [
 		'bank_id' => 'int',
 		'location_id' => 'int',
-		'is_deleted' => 'int'
+		'is_deleted' => IsDeleted::class
 	];
 
 	protected $fillable = [

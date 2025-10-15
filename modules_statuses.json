@@ -1,4 +1,7 @@
 {
+    "BaseModule": true,
     "Bank": true,
-    "Location": true
+    "Location": true,
+    "Blog": true,
+    "CourseStatus": true
 }

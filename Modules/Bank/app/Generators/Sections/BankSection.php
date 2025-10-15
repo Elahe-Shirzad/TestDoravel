@@ -57,15 +57,23 @@ class BankSection extends BaseSection
         return [
             Section::make('bank-section_show-id')
                 ->routeName('admin.base-information.banks.show')
-                ->label('جزئیات'),
+                ->label('جزئیات')
+                ->tab('tab_bank'),
 
             Section::make('bank-section_edit-id')
                 ->routeName('admin.base-information.banks.edit')
-                ->label('ویرایش'),
+                ->label('ویرایش')
+                ->tab('tab_bank'),
 
             Section::make('bank-section_location-id')
                 ->routeName('admin.base-information.banks.location')
-                ->label('لیست شعبات'),
+                ->label('لیست شعبات')
+                ->tab('tab_branch_bank'),
+
+            Section::make('bank-section_location-id')
+                ->routeName('admin.base-information.banks.locations.edit')
+                ->label('درج/حذف(شعبه) ')
+                ->tab('tab_branch_bank'),
         ];
     }
 }

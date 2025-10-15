@@ -15,4 +15,11 @@ return[
     'created_at'=>'تاریخ ایجاد',
     'location_image'=>'تصویر مکان',
     'full_address'=>'آدرس کامل',
+    'actions'=>'عملیات',
+    'edit'=>'ویرایش',
+    'destroy'=>'حذف',
+    'create'=>'درج',
+    'copy_link'=>'کپی لینک',
+    'view'=>'مشاهده',
+    "delete_confirmation_message" => "آیا از عملیات حذف مطمئن هستید؟",
 ];

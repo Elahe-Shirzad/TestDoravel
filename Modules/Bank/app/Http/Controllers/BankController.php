@@ -17,6 +17,8 @@ use Modules\Bank\Models\Bank;
 use Modules\Bank\Models\BankLocation;
 use Modules\Bank\Models\Location;
 use Modules\Bank\Enums\Files\FileType;
+use Modules\Bank\Services\ChartDataService;
+
 
 
 //use Modules\EducationalGroup\Models\EducationalGroup;
@@ -106,7 +108,14 @@ class BankController extends Controller
         BladeLayout::banner(BankBanner::class);
         BladeLayout::section(BankSection::class);
 
-        return view('bank::show', compact('bank'));
+
+        $service = new ChartDataService(BankLocation::where('bank_id', $bank->id));
+        $getAllPeriodsStats = $service->getAllPeriodsStats();
+
+//        dd($getAllPeriodsStats);
+
+
+            return view('bank::show', compact('bank','getAllPeriodsStats'));
     }
 
     /**
@@ -116,6 +125,7 @@ class BankController extends Controller
     {
         BladeLayout::data(compact('bank'));
         BladeLayout::section(BankSection::class);
+        BladeLayout::tab(BankTab::class);
         BladeLayout::banner(BankBanner::class);
 
         $locations = prepareSelectComponentData(Location::all(), 'full_name');
@@ -128,10 +138,16 @@ class BankController extends Controller
             entityFileRelation: 'image'
         );
 
-        $locationsSelected = $bank->locations
-            ->where('is_deleted', '=', '0')
-            ->pluck('id')
+        $locationsSelected = BankLocation::query()
+            ->where('bank_id', $bank->id)
+            ->where('is_deleted', 0)
+            ->pluck('location_id')
             ->toArray();
+
+//        $locationsSelected = $bank->locations
+//            ->where('is_deleted', '=', '0')
+//            ->pluck('id')
+//            ->toArray();
 
         return view('bank::edit', compact('bank', 'locations', 'locationsSelected', 'avatarFileType'));
     }
@@ -193,7 +209,7 @@ class BankController extends Controller
             $bank->delete();
 
             return redirect()
-                ->route('admin.base-information.banks.index')
+                ->route('admin.base-information.banks.location')
                 ->withFlash(
                     type: 'success',
                     message: "حذف با موفقیت انجام شد",

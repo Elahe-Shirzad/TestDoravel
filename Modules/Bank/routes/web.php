@@ -49,17 +49,23 @@ Route::controller(BankLocationController::class)
     ->prefix('banks')
     ->as('banks.')
     ->group(function () {
-        Route::get('/{bank}', 'location')
-            ->name('location')
-//            ->parentRoute('admin.base-information.banks.index')
-            ->title('شعبات بانک');
+        Route::prefix('{bank}')->group(function () {
 
-//        Route::prefix('{favorite}')->group(function () {
-//
-//            Route::delete('/destroy', 'destroy')
-//                ->name('destroy')
-//                ->title('حذف دنبال کننده');
-//        });
+            Route::get('location', 'location')
+                ->name('location')
+                ->title('شعبات بانک');
+////
+            Route::get('locations/edit', 'edit')
+                ->name('locations.edit')
+                ->title('درج شعبه');
+
+            Route::put('locations/update', 'update')->name('locations.update');
+
+
+            Route::delete('locations/{location}/destroy', 'destroy')->name('locations.destroy');
+
+
+        });
 
     });
 

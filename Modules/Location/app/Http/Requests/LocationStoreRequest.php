@@ -6,8 +6,8 @@ use Dornica\Foundation\Core\Enums\IsActive;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 use Modules\Bank\Enums\Files\FileType;
+use Modules\BaseModule\Rules\NumberSeparatorRule;
 use Modules\Location\Enums\Service;
-
 class LocationStoreRequest extends FormRequest
 {
     /**
@@ -59,7 +59,8 @@ class LocationStoreRequest extends FormRequest
             "description" => [
                 "nullable",
                 "string",
-                "max:1025"
+                'max:1024',
+//                new NumberSeparatorRule(max: 32000, isString: true)
             ],
             "published_at" => [
                 "nullable",

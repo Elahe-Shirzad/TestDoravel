@@ -75,11 +75,11 @@ class Bank extends Model
 					->withPivot('id', 'deleted_at', 'is_deleted')
 					->withTimestamps();
 	}
-//    public function image(): BelongsTo
+//    public function locations()
 //    {
-//        return $this->belongsTo(File::class, 'image_id');
+//        return $this->belongsToMany(Location::class, 'bank_location')
+//            ->withPivot('is_deleted');
 //    }
-
 
     public function image()
     {

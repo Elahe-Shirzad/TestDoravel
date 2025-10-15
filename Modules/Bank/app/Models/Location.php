@@ -88,4 +88,10 @@ class Location extends Model
         -
          میدان {$this->square}";
     }
+
+
+    public function avatar()
+    {
+        return $this->belongsTo(File::class, 'avatar_id');
+    }
 }

@@ -94,7 +94,6 @@
                     :multiple="true"
                 />
 
-
                 <x-switch-input
                     container-class="col-12 col-md-6"
                     class="is_active"

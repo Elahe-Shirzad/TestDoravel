@@ -1,44 +1,3 @@
-{{--<x-default-layout>--}}
-{{--    <x-data-display--}}
-{{--        cols="3"--}}
-{{--        :alignValues="true"--}}
-{{--    >--}}
-{{--        <x-data-item--}}
-{{--            label="نام"--}}
-{{--            value="{{$bank->name}}"--}}
-{{--        />--}}
-
-{{--        <x-data-item--}}
-{{--            label="کد"--}}
-{{--            value="{{$bank->code}}"--}}
-{{--        />--}}
-
-{{--        <x-data-item--}}
-{{--            label="مرتب سازی"--}}
-{{--            value="{{$bank->sort}}"--}}
-{{--        />--}}
-
-{{--        <x-data-item--}}
-{{--            label="وضعیت"--}}
-{{--            value="{{$bank->is_active == \Dornica\Foundation\Core\Enums\IsActive::YES ? __('bank::enum.is_active.yes') : __('bank::enum.is_active.no')}}"--}}
-{{--        />--}}
-
-{{--        <x-data-item--}}
-{{--            label="تاریخ درج"--}}
-{{--            value="{{verta($bank->created_at)->format('Y/m/d H:i:s')}}"--}}
-{{--            dir="ltr"--}}
-{{--            valueClass="text-right"--}}
-{{--        />--}}
-
-{{--        <x-data-item--}}
-{{--            label="تاریخ آخرین بروزرسانی"--}}
-{{--            value="{{verta($bank->updated_at)->format('Y/m/d H:i:s')}}"--}}
-{{--            dir="ltr"--}}
-{{--            valueClass="text-right"--}}
-{{--        />--}}
-
-{{--    </x-data-display>--}}
-{{--</x-default-layout>--}}
 
 
 <x-default-layout>
@@ -47,7 +6,7 @@
         class="mb-5"
         :no-padding="true"
     >
-        @if(checkPolicy('canUpdate', $bank)->allowed())
+{{--        @if(checkPolicy('canUpdate', $bank)->allowed())--}}
             <x-slot:headerActions>
                 <x-button
                     type="link"
@@ -59,7 +18,7 @@
                     :href="route('admin.base-information.banks.edit', encryptValue($bank->id))"
                 />
             </x-slot:headerActions>
-        @endif
+{{--        @endif--}}
 
         <x-data-display
             bordered="items"
@@ -124,7 +83,7 @@
                 orientation="vertical"
             >
                 <x-image
-                    :src="$bank->image_id"
+                    :src="$bank?->image_id"
                     :alt="$bank->title"
                     :radius="4"
                     :showPopup="true"
@@ -133,7 +92,113 @@
                     :height="150"
                 />
             </x-data-item>
+
+
+
+            <x-high-chart
+                type="column"
+                :options="[
+                    'legend' => false
+                ]"
+                :categories="[
+                [
+                    'active' => true,
+                    'title' =>'یک هفته اخیر',
+                    'options' => [
+                        'xAxis' => [
+                            'categories' => $getAllPeriodsStats['week']['persianLabels'] ?? [],
+                        ]
+                    ],
+                    'series' => [
+                        [
+                            'name' =>'شعبات',
+                            'data' => $getAllPeriodsStats['week']['counts'] ?? [],
+                            'color' => $bank->color ?? '#3c8f76',
+                        ]
+                    ],
+                ],
+                [
+                    'title' =>'یک ماه اخیر',
+                    'options' => [
+                        'xAxis' => [
+                            'categories' => $getAllPeriodsStats['month']['persianLabels'] ?? [],
+                        ]
+                    ],
+                    'series' => [
+                        [
+                            'name' =>'شعبات',
+                            'data' => $getAllPeriodsStats['month']['counts'] ?? [],
+                            'color' =>$bank->color ?? '#3c8f76',
+                        ]
+                    ],
+                ],
+                [
+                    'title' => 'یک سال اخیر',
+                    'options' => [
+                        'xAxis' => [
+                            'categories' => $getAllPeriodsStats['year']['persianLabels'] ?? [],
+                        ]
+                    ],
+                    'series' => [
+                        [
+                            'name' => 'شعبات',
+                            'data' => $getAllPeriodsStats['year']['counts'] ?? [],
+                            'color' => $bank->color ?? '#3c8f76',
+                        ],
+                    ],
+                ],
+                [
+                    'title' => 'کل',
+                    'options' => [
+                        'xAxis' => [
+                            'categories' => $getAllPeriodsStats['all']['persianLabels'] ?? [],
+                        ]
+                    ],
+                    'series' => [
+                        [
+                            'name' =>'شعبات',
+                            'data' => $getAllPeriodsStats['all']['counts'] ?? [],
+                            'color' => $bank->color ?? '#3c8f76',
+                        ],
+                    ],
+                ]
+            ]"
+            />
+
+
+
+
+
         </x-data-display>
+{{--            <x-mapbox--}}
+{{--                :zoom="9"--}}
+{{--                height="400px"--}}
+{{--                :center-latitude="36.568058"--}}
+{{--                :center-longitude="52.850499"--}}
+{{--                :interactive="true"--}}
+{{--                :searchable="true"--}}
+{{--                :drawable="true"--}}
+{{--                :controls="['navigation', 'fullscreen', 'geolocation']"--}}
+{{--                :markers="[--}}
+{{--        [--}}
+{{--            'latitude' => 36.5559807,--}}
+{{--            'longitude' => 53.0512492,--}}
+{{--            'title' => 'ساری',--}}
+{{--            'color' => 'var(--bs-success)',--}}
+{{--        ],--}}
+{{--        [--}}
+{{--            'latitude' => 36.5406547,--}}
+{{--            'longitude' => 52.6743405,--}}
+{{--            'title' => 'بابل',--}}
+{{--            'color' => '#563d2d',--}}
+{{--        ],--}}
+{{--        [--}}
+{{--            'latitude' => 36.459708,--}}
+{{--            'title' => 'قائمشهر',--}}
+{{--            'longitude' => 52.848358,--}}
+{{--        ],--}}
+{{--    ]"--}}
+{{--            />--}}
     </x-card>
 
     {{--    <x-card--}}

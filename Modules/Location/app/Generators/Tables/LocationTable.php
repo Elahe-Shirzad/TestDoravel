@@ -27,7 +27,11 @@ class LocationTable extends BaseTable
     {
         $this
             ->setDriver(Driver::MODEL)
-            ->setResource(Location::class);
+            ->setResource(Location::class)
+            ->getQueryBuilder()
+            ->withCount('banks');
+
+//        dd($this->getData()->items());
     }
 
     /**
@@ -47,6 +51,15 @@ class LocationTable extends BaseTable
         );
 
         $this->addColumn(
+            name: 'avatar_id',
+            label: __('location::general.location_image'),
+            type: 'image',
+            sortable: false,
+            mergeGroup:"bank_branch",
+        );
+
+
+        $this->addColumn(
             name: 'branch',
             label: __('location::general.branch'),
             mergeGroup:"bank_branch",
@@ -55,18 +68,15 @@ class LocationTable extends BaseTable
             options: [
                 'groupHeadTooltip' => 'این ستون ها شامل اطلاعات مربوط به شعبه و تصویرآن است',
                 'groupBreakLine' => true,
-                'theadSeparator' => '/',
-                'groupOrientation' => 'horizontal',
+//                'theadSeparator' => '/',
+//                'groupOrientation' => 'horizontal',
+
             ],
+            class: 'd-block',
         );
 
-        $this->addColumn(
-            name: 'avatar_id',
-            label: __('location::general.location_image'),
-            type: 'image',
-            sortable: false,
-            mergeGroup:"bank_branch",
-        );
+
+
 
         $this->addColumn(
             name: 'square',
@@ -105,6 +115,7 @@ class LocationTable extends BaseTable
         );
 
         $this->addColumn(
+            mergeGroup:"bank_branch",
             name: 'is_active',
             label:__('location::general.is_active'),
             type: function ($value, $entity) {
@@ -121,6 +132,7 @@ class LocationTable extends BaseTable
         );
 
         $this->addColumn(
+            mergeGroup:"bank_branch",
             name: 'service',
             label:__('location::general.service'),
             type: function ($value, $entity) {
@@ -231,6 +243,9 @@ class LocationTable extends BaseTable
                 return route('admin.base-information.locations.destroy', encryptValue($entity->id));
             },
             targetMethod: 'DELETE',
+            disabled: function ($entity){
+                return $entity->banks_count >0;
+            },
             variant: Variant::DANGER,
             class: 'text-danger',
             permission: 'admin.base-information.locations.destroy',

@@ -114,30 +114,8 @@
                     :checked="\Modules\Location\Enums\Service::OFFLINE->value"
                />
 
-
-                <x-datetime-range-picker
-                    container-class="col-md-12"
-                    type="datetime"
-                    fromName="published_at"
-                    toName="expired_at"
-                    :time-picker-options="['seconds' => false, 'minutes' => true, 'hours' => true]"
-                    :fromLabel="__('bank::general.published_at')"
-                    :toLabel="__('bank::general.expired_at')"
-                    :autoClose="true"
-                    :allowTyping="true"
-                    :from-min-date="now()"
-                    :fromValue="old('published_at') ? verta()->parse(old('published_at'))->toCarbon() : null"
-                    :toValue="old('expired_at') ? verta()->parse(old('expired_at'))->toCarbon() : null"
-                />
-
-                <x-text-area
-                    name="description"
-                    type="tinymce"
-                    :label="__('location::general.description')"
-                    mode="full"
-                    :max-length="1024"
-                >{!!old('description')!!}</x-text-area>
             </div>
+
 
 
             <x-image-picker
@@ -154,6 +132,59 @@
                 :aspect-ratio="2/2"
                 :file-name-max-length="128"
             />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <x-accordion type="multiple" gap="8px"  class="pt-5" >
+                <x-accordion-item
+
+                    title="درصورت لازم بخش زیر را پر کنید"
+                    icon="fa-duotone fa-solid fa-grid-2"
+                >
+
+                    <x-datetime-range-picker
+                        container-class="col-md-12"
+                        type="datetime"
+                        fromName="published_at"
+                        toName="expired_at"
+                        :time-picker-options="['seconds' => false, 'minutes' => true, 'hours' => true]"
+                        :fromLabel="__('bank::general.published_at')"
+                        :toLabel="__('bank::general.expired_at')"
+                        :autoClose="true"
+                        :allowTyping="true"
+                        :from-min-date="now()"
+                        :fromValue="old('published_at') ? verta()->parse(old('published_at'))->toCarbon() : null"
+                        :toValue="old('expired_at') ? verta()->parse(old('expired_at'))->toCarbon() : null"
+                    />
+
+                    <x-text-area
+                        name="description"
+                        type="tinymce"
+                        :label="__('location::general.description')"
+                        :showMaxLength="true"
+                        mode="full"
+                        :max-length="1024"
+                    >{!!old('description')!!}</x-text-area>
+
+                </x-accordion-item>
+            </x-accordion>
+
+
+
+
+
+
 
             @canAccess('admin.base-information.banks.store')
             <div class="card-footer pb-0 px-0 d-flex gap-4 pt-5 justify-content-end mt-4">

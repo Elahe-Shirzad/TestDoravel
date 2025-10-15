@@ -11,6 +11,7 @@ use Modules\Bank\Enums\Files\FileType;
 use Modules\Bank\Models\Bank;
 use Modules\Bank\Models\BankLocation;
 use Modules\Bank\Models\Location;
+use Modules\Location\Generators\Banners\LocationBanner;
 use Modules\Location\Generators\Tables\LocationTable;
 use Modules\Location\Http\Requests\LocationStoreRequest;
 use Modules\Location\Http\Requests\LocationUpdateRequest;
@@ -94,9 +95,12 @@ class LocationController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function show(Location $location)
     {
-        return view('location::show');
+        BladeLayout::data(compact('location'));
+        BladeLayout::banner(LocationBanner::class);
+
+        return view('location::show',compact('location'));
     }
 
     /**
@@ -104,6 +108,8 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
+        BladeLayout::data(compact('location'));
+        BladeLayout::banner(LocationBanner::class);
 
         $avatarFileTypeInfo = getFileType(FileType::LOCATION, 'location_avatar');
 
