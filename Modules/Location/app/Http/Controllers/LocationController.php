@@ -15,6 +15,7 @@ use Modules\Location\Generators\Banners\LocationBanner;
 use Modules\Location\Generators\Tables\LocationTable;
 use Modules\Location\Http\Requests\LocationStoreRequest;
 use Modules\Location\Http\Requests\LocationUpdateRequest;
+use Exception;
 
 class LocationController extends Controller
 {
@@ -113,12 +114,14 @@ class LocationController extends Controller
 
         $avatarFileTypeInfo = getFileType(FileType::LOCATION, 'location_avatar');
 
-        $avatarFileType = getUploadRequirements(
-            documentType: $avatarFileTypeInfo,
-            entity: Location::class,
-            entityId: $location->id,
-            entityFileRelation: 'avatar'
-        );
+        $avatarFileType = getUploadRequirements($avatarFileTypeInfo);
+
+//        $avatarFileType = getUploadRequirements(
+//            documentType: $avatarFileTypeInfo,
+//            entity: Location::class,
+//            entityId: $location->id,
+//            entityFileRelation: 'avatar'
+//        );
 
         $isActive = prepareSelectComponentData(
             source: IsActive::class,

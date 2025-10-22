@@ -9,13 +9,13 @@
     */
 
     /* Primary */
-    --bs-primary: #66bbda;
-    --bs-primary-active: #5ca8c4;
-    --x-primary-active-2: #5296ae;
-    --x-primary-clarity-20: #478399;
-    --x-primary-clarity-25: #3d7083;
-    --x-primary-light: #ecfdf5;
-    --x-primary-light-2: #f2faf6;
+    --bs-primary: #bf247d;
+    --bs-primary-active: #ac2071;
+    --x-primary-active-2: #991d64;
+    --x-primary-clarity-20: #861958;
+    --x-primary-clarity-25: #73164b;
+    --x-primary-light: #73164b;
+    --x-primary-light-2: #4c0e32;
     --bs-primary-light: var(--x-primary-light);
 
     /* Success */

@@ -39,17 +39,22 @@ doravel.ready(() => {
 }, ".x-table-generator");
 
 $(".x-filter-item").each(function () {
-    const $span = $(this).find("span.text-truncate");
-    if ($span.outerWidth() === 150) {
-        // Check if the span width equals 150
-        const trimmedText = $span.text().trim(); // Get and trim the span's text
-        const $icon = $(`<i class="fa-regular fa-circle-info ms-2 text-gray-600 cursor-pointer"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-custom-class="custom-tooltip"
-                            data-bs-title="${trimmedText}"></i>`);
-        $(this).append($icon); // Append the <i> element to the .x-filter-item
-    }
+    $(this)
+        .find(".filter-label-truncate.text-truncate")
+        .each(function () {
+            const $span = $(this);
+
+            // Add a small tolerance (1-2px) to account for browser rounding differences
+            if ($span[0].scrollWidth > $span[0].clientWidth + 1) {
+                const trimmedText = $span.text().trim();
+                const $icon = $(`<i class="fa-regular fa-circle-info ms-2 text-gray-600 cursor-pointer"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                data-bs-custom-class="custom-tooltip"
+                                data-bs-title="${trimmedText}"></i>`);
+                $span.parent().append($icon);
+            }
+        });
 });
 
 /***********************************************************

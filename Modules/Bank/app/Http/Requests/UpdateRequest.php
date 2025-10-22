@@ -20,12 +20,14 @@ class UpdateRequest extends FormRequest
     {
         $bank = Route::getCurrentRoute()->parameter('bank');
         $avatarFileType = getFileType(FileType::BANK, 'bank_image');
-        $avatarFileTypeInfo = getUploadRequirements(
-            documentType: $avatarFileType,
-            entity: Bank::class,
-            entityId: $bank->id,
-            entityFileRelation: 'image'
-        );
+//        $avatarFileTypeInfo = getUploadRequirements(
+//            documentType: $avatarFileType,
+//            entity: Bank::class,
+//            entityId: $bank->id,
+//            entityFileRelation: 'image'
+//        );
+
+        $avatarFileTypeInfo = getUploadRequirements($avatarFileType);
         $avatarRules = makeFileValidationRules('image', $avatarFileTypeInfo);
 
         $rules = [

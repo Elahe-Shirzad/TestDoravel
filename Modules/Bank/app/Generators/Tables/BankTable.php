@@ -194,6 +194,19 @@ class BankTable extends BaseTable
             variant: 'success',
             permission: 'admin.base-information.banks.create',
         );
+
+        $this->addToolbarButton(
+            title: 'درج بانک با مودال',
+            route: route('admin.base-information.banks.create'),
+            icon: 'fa-solid fa-plus',
+            variant: 'success',
+            attributes: [
+                'data-bs-toggle' => 'modal',
+                'data-bs-target' => '#myModal',
+                'class' => 'custom-class',
+            ],
+            permission: 'admin.base-information.banks.create'
+        );
     }
 
     /**

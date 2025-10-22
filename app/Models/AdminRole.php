@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class AdminRole
- * 
+ *
  * @property int $id
  * @property int $admin_id
  * @property int $role_id
@@ -28,6 +28,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|null $updated_by
  * @property int|null $deleted_by
  *
+ *
+ * @property Admin $admin
+ * @property Role $role
  * @package App\Models
  */
 class AdminRole extends Model
@@ -61,4 +64,15 @@ class AdminRole extends Model
 		'updated_by',
 		'deleted_by'
 	];
+
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

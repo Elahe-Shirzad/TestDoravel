@@ -12,6 +12,7 @@ use Modules\Bank\Generators\Sections\BankSection;
 use Modules\Bank\Generators\Tables\BankTable;
 use Modules\Bank\Generators\Tabs\BankTab;
 use Modules\Bank\Http\Requests\StoreRequest;
+use Modules\Bank\Http\Requests\UpdateBankStatusRequest;
 use Modules\Bank\Http\Requests\UpdateRequest;
 use Modules\Bank\Models\Bank;
 use Modules\Bank\Models\BankLocation;
@@ -31,7 +32,10 @@ class BankController extends Controller
     public function index()
     {
         BladeLayout::table(BankTable::class);
-        return view('bank::index');
+        $avatarFileTypeInfo = getFileType(FileType::BANK, 'bank_image');
+        $avatarFileType = getUploadRequirements($avatarFileTypeInfo);
+        $locations = prepareSelectComponentData(Location::all(), 'full_name');
+        return view('bank::index',compact('locations', 'avatarFileType'));
     }
 
     /**
@@ -131,12 +135,14 @@ class BankController extends Controller
         $locations = prepareSelectComponentData(Location::all(), 'full_name');
 
         $avatarFileTypeInfo = getFileType(FileType::BANK, 'bank_image');
-        $avatarFileType = getUploadRequirements(
-            documentType: $avatarFileTypeInfo,
-            entity: Bank::class,
-            entityId: $bank->id,
-            entityFileRelation: 'image'
-        );
+//        $avatarFileType = getUploadRequirements(
+//            documentType: $avatarFileTypeInfo,
+//            entity: Bank::class,
+//            entityId: $bank->id,
+//            entityFileRelation: 'image'
+//        );
+
+        $avatarFileType = getUploadRequirements($avatarFileTypeInfo);
 
         $locationsSelected = BankLocation::query()
             ->where('bank_id', $bank->id)

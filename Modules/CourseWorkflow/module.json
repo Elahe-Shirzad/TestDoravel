@@ -1,0 +1,11 @@
+{
+    "name": "CourseWorkflow",
+    "alias": "courseworkflow",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CourseWorkflow\\Providers\\CourseWorkflowServiceProvider"
+    ],
+    "files": []
+}

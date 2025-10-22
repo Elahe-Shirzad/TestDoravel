@@ -3,6 +3,7 @@
 namespace Modules\Location\Generators\Banners;
 
 use Dornica\BladeComponents\UI\Badge\Badge;
+use Dornica\BladeComponents\UI\Button\Button;
 use Dornica\BladeComponents\UI\DropdownButton\DropdownButton;
 use Dornica\BladeComponents\UI\DropdownButton\DropdownItem;
 use Dornica\Foundation\Core\Enums\IsActive;
@@ -91,7 +92,7 @@ class LocationBanner extends BaseBanner
 //        $slug = (string)$this->blog_category->slug;
         $id = (string)$this->location->id;
 
-        return [
+        $buttons= [
             DropdownButton::make()
                 ->menuPosition('right')
                 ->title(__('location::general.actions'))
@@ -126,5 +127,11 @@ class LocationBanner extends BaseBanner
                         ->method('delete'),
                 ])
         ];
+
+        $buttons[] = Button::make()
+            ->title(__('basemodule::operation.change_status'))
+            ->extraAttributes("data-bs-target=#change-status data-bs-toggle=modal");
+        return  $buttons;
+
     }
 }

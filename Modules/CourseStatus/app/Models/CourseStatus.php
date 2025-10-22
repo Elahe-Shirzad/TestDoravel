@@ -11,10 +11,13 @@ use Carbon\Carbon;
 use Dornica\Foundation\Core\Enums\IsActive;
 use Dornica\Foundation\Core\Traits\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\BaseModule\Enums\General\BooleanState;
 use Modules\BaseModule\Traits\AvailableScopeTrait;
 use Modules\BaseModule\Traits\FormattedDate;
+use Modules\CourseWorkflow\Models\CourseWorkflow;
 
 
 /**
@@ -90,11 +93,21 @@ class CourseStatus extends Model
 		'is_deleted',
 		'deleted_by'
 	];
+    /**
+     * @return BelongsTo
+     */
+    public function admin(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
 
-	public function admin()
-	{
-		return $this->belongsTo(Admin::class, 'created_by');
-	}
+    /**
+     * @return CourseStatus|HasMany
+     */
+//    public function courseLogs(): CourseStatus|HasMany
+//    {
+//        return $this->hasMany(CourseLog::class);
+//    }
 
     /**
      * @return BelongsToMany
@@ -106,10 +119,67 @@ class CourseStatus extends Model
             ->using(CourseStatusAccess::class);
     }
 
+    /**
+     * @return HasMany
+     */
+    public function courseStatuses(): HasMany
+    {
+        return $this->hasMany(CourseStatusAccess::class, 'child_course_status_id');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function courseWorkflows(): BelongsToMany
+    {
+        return $this->belongsToMany(CourseWorkflow::class, 'course_workflow_course_status')
+            ->withPivot('id', 'type', 'created_by');
+    }
+
+    /**
+     * @return CourseStatus|HasMany
+     */
+//    public function courses(): CourseStatus|HasMany
+//    {
+//        return $this->hasMany(\Modules\Course\Models\Course::class);
+//    }
+
+    /**
+     * @return self|null
+     */
+    public static function activeStartStatus(): ?self
+    {
+        return self::where('is_start', BooleanState::YES)
+            ->where('is_active', IsActive::YES)
+            ->first();
+    }
+
     public static function checkIfStartStatusExists(): bool
     {
         return self::where('is_active', IsActive::YES->value)
             ->where('is_start', BooleanState::YES->value)
             ->exists();
+    }
+
+    public static function changeTheActiveStatus($targetField, $exceptId = null): void
+    {
+        $query = self::where($targetField, BooleanState::YES->value);
+
+        if ($exceptId !== null) {
+            $query->where('id', '!=', $exceptId);
+        }
+
+        $query->update([$targetField => BooleanState::NO->value]);
+    }
+
+    public function isActiveStart(): bool
+    {
+        return $this->is_start->value === BooleanState::YES->value &&
+            $this->is_active->value === IsActive::YES->value;
+    }
+
+    public function isLocked(): bool
+    {
+        return $this->is_lock->value === BooleanState::YES->value;
     }
 }

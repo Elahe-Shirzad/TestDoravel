@@ -171,6 +171,7 @@ return [
     'user_general_info' => "اطلاعات کلی کاربر",
     'sender' => "ارسال‌کننده",
     'admin_reply' => 'پاسخ ادمین',
+    'admin' => 'ادمین',
     'view_status' => 'وضعیت مشاهده',
     'replied_at' => 'زمان پاسخ',
     'responder_admin' => 'ادمین پاسخ‌دهنده',

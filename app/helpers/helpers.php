@@ -1962,4 +1962,27 @@ if (!function_exists('jalaliToGregorian')) {
 //}
 
 
+if (!function_exists('cacheWorkflowStatusesForRole')) {
+    /**
+     * cacheWorkflowStatusesForRole
+     *
+     * @param bool $forceUpdate
+     * @return void
+     */
+    function cacheWorkflowStatusesForRole(bool $forceUpdate = false): void
+    {
+        $currentRoleId = authenticator()->currentRole()['id'];
+        $configWorkflows = config('workflow');
+
+        foreach ($configWorkflows as $section => $workflow) {
+            $storageKey = "{$section}.{$currentRoleId}";
+
+            if ($forceUpdate || !systemStorage()->has($storageKey, 'workflows')) {
+                $statuses = (new WorkFlowService($workflow))->getAllWorkFlowStatuses();
+                systemStorage()->set($storageKey, 'workflows', $statuses);
+            }
+        }
+    }
+}
+
 

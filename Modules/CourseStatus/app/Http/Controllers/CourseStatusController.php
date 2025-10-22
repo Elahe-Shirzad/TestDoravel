@@ -3,6 +3,7 @@
 namespace Modules\CourseStatus\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Dornica\Foundation\Core\Enums\IsActive;
 use Dornica\PanelKit\BladeLayout\Facade\BladeLayout;
 use Exception;
 use Illuminate\Http\Request;
@@ -10,8 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Modules\BaseModule\Enums\General\BooleanState;
 use Modules\CourseStatus\Generators\Tables\CourseStatusTable;
 use Modules\CourseStatus\Http\Requests\CourseStatusStoreRequest;
+use Modules\CourseStatus\Http\Requests\CourseStatusUpdateRequest;
 use Modules\CourseStatus\Models\CourseStatus;
-use Modules\CourseStatus\Models\CourseStatusAccess;
 use Illuminate\Support\Facades\Log;
 
 class CourseStatusController extends Controller
@@ -86,7 +87,6 @@ class CourseStatusController extends Controller
         $validated = $request->validated();
 
 
-
         $data = array_merge($validated, [
             'sort' => getNextSortValue(new CourseStatus()),
             'is_start' => $courseStatuses->count() > 0 ? $validated['is_start'] : BooleanState::YES->value,
@@ -140,16 +140,87 @@ class CourseStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(CourseStatus $status)
     {
-        return view('coursestatus::edit');
+        BladeLayout::data(['status' => $status]);
+//        BladeLayout::banner(CourseStatusBanner::class);
+
+        $childCourseStatusIds = $status->courseStatusAccesses()
+            ->pluck('child_course_status_id')
+            ->toArray();
+
+        $allCourseStatuses = CourseStatus::where(function ($q) use ($childCourseStatusIds) {
+            $q->where('is_active', IsActive::YES->value);
+            $q->orWhereIn('id', $childCourseStatusIds);
+        })->where('id', '<>', $status->id)->get();
+        try {
+            $allCourseStatuses = prepareSelectComponentData($allCourseStatuses);
+        } catch (Exception $exception) {
+            Log::channel('course-status-module')->error($exception);
+            return backWithError();
+        }
+
+        $isStartStatus = $status->isActiveStart();
+        $isLocked = $status->isLocked();
+
+        return view('coursestatus::edit', compact(
+            'status',
+            'childCourseStatusIds',
+            'allCourseStatuses',
+            'isStartStatus',
+            'isLocked'
+        ));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(CourseStatusUpdateRequest $request, CourseStatus $status)
     {
+        $validated = $request->validated();
+        $isUnableToEdit = $status->isActiveStart() || $status->isLocked();
+
+        $data = array_merge($validated, [
+            'is_start' => $isUnableToEdit ? $status->is_start : $validated['is_start'],
+            'is_end' => $isUnableToEdit ? $status->is_end : $validated['is_end'],
+            'is_active' => $isUnableToEdit ? $status->is_active : $validated['is_active'],
+        ]);
+
+        unset($data['transfer_status_access']);
+
+        DB::beginTransaction();
+        try {
+            if ($request->is_start == BooleanState::YES->value) {
+                CourseStatus::changeTheActiveStatus('is_start', $status->id);
+            }
+
+            $status->update($data);
+            $status->courseStatusAccesses()->detach();
+
+            if ($request->has('transfer_status_access')) {
+                $statusAccessData = CourseStatus::whereIn('id', $request->transfer_status_access)->get();
+                $status->courseStatusAccesses()->attach($statusAccessData);
+            }
+
+            DB::commit();
+            routePropertyCollector()->forgetCachedDatabaseRoutes();
+            systemStorage()->set('course', 'statuses', CourseStatus::available());
+
+            return redirect()
+                ->route('admin.system-settings.course-settings.course-statuses.index')
+                ->withFlash(
+                    message: __('basemodule::message.update_successfully'),
+                    type: 'success',
+                );
+        } catch (Exception $exception) {
+            DB::rollBack();
+            Log::channel('course-status-module')->error($exception);
+            return backWithError();
+        }
     }
 
     /**
@@ -159,3 +230,6 @@ class CourseStatusController extends Controller
     {
     }
 }
+
+
+

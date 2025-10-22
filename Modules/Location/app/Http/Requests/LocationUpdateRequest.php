@@ -20,12 +20,14 @@ class LocationUpdateRequest extends FormRequest
     {
         $location = Route::getCurrentRoute()->parameter('location');
         $avatarFileType = getFileType(FileType::LOCATION, 'location_avatar');
-        $avatarFileTypeInfo = getUploadRequirements(
-            documentType: $avatarFileType,
-            entity: Location::class,
-            entityId: $location->id,
-            entityFileRelation: 'avatar'
-        );
+//        $avatarFileTypeInfo = getUploadRequirements(
+//            documentType: $avatarFileType,
+//            entity: Location::class,
+//            entityId: $location->id,
+//            entityFileRelation: 'avatar'
+//        );
+
+        $avatarFileTypeInfo = getUploadRequirements($avatarFileType);
         $avatarRules = makeFileValidationRules('avatar', $avatarFileTypeInfo);
 
         $rules = [

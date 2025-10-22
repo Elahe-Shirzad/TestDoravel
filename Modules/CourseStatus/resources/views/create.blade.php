@@ -9,7 +9,7 @@
             <div class="row g-3">
 
                 <x-text-input
-                    container-class="col-12 col-md-6"
+                    containerClass="col-12 col-md-6"
                     name="code"
                     class="dir-ltr text-left english-code"
                     id="code"
@@ -155,140 +155,140 @@
         @endcanAccess
 
 
-{{--        <script>--}}
-{{--            const activeStatus = "{{ \Modules\BaseModule\Enums\General\BooleanState::YES->value }}";--}}
-{{--            const deactiveStatus = "{{ \Modules\BaseModule\Enums\General\BooleanState::NO->value }}";--}}
+        <script>
+            const activeStatus = "{{ \Modules\BaseModule\Enums\General\BooleanState::YES->value }}";
+            const deactiveStatus = "{{ \Modules\BaseModule\Enums\General\BooleanState::NO->value }}";
 
-{{--            const translations = {--}}
-{{--                override_status_confirmation: @json(__('basemodule::message.override_status_confirmation', [--}}
-{{--        'sectionName' => ':sectionName',--}}
-{{--        'targetStatus' => ':targetStatus'--}}
-{{--    ])),--}}
-{{--                fields: {--}}
-{{--                    is_start: @json(__('basemodule::field.statuses.is_start')),--}}
-{{--                }--}}
-{{--            };--}}
+            const translations = {
+                override_status_confirmation: @json(__('basemodule::message.override_status_confirmation', [
+        'sectionName' => ':sectionName',
+        'targetStatus' => ':targetStatus'
+    ])),
+                fields: {
+                    is_start: @json(__('basemodule::field.statuses.is_start')),
+                }
+            };
 
-{{--            function getMessageBasedOnField(fieldName, statusTitle) {--}}
-{{--                let sectionName = translations.fields[fieldName] || '';--}}
-{{--                return replacePlaceholders(translations.override_status_confirmation, {--}}
-{{--                    sectionName: sectionName,--}}
-{{--                    targetStatus: statusTitle--}}
-{{--                });--}}
-{{--            }--}}
+            function getMessageBasedOnField(fieldName, statusTitle) {
+                let sectionName = translations.fields[fieldName] || '';
+                return replacePlaceholders(translations.override_status_confirmation, {
+                    sectionName: sectionName,
+                    targetStatus: statusTitle
+                });
+            }
 
-{{--            function replacePlaceholders(template, replacements) {--}}
-{{--                return template.replace(/:([a-zA-Z0-9_]+)/g, function(match, key) {--}}
-{{--                    return typeof replacements[key] !== 'undefined' ? replacements[key] : match;--}}
-{{--                });--}}
-{{--            }--}}
+            function replacePlaceholders(template, replacements) {
+                return template.replace(/:([a-zA-Z0-9_]+)/g, function(match, key) {
+                    return typeof replacements[key] !== 'undefined' ? replacements[key] : match;
+                });
+            }
 
 
-{{--            function checkStartEndConflict() {--}}
-{{--                const isStartChecked = $(`[name='is_start']:checked`);--}}
-{{--                const isStartActive = isStartChecked.val() === activeStatus;--}}
-{{--                const isEndActive = $(`[name='is_end']:checked`).val() === activeStatus;--}}
+            function checkStartEndConflict() {
+                const isStartChecked = $(`[name='is_start']:checked`);
+                const isStartActive = isStartChecked.val() === activeStatus;
+                const isEndActive = $(`[name='is_end']:checked`).val() === activeStatus;
 
-{{--                if (isStartActive && isEndActive) {--}}
-{{--                    return {--}}
-{{--                        valid: false,--}}
-{{--                        action: () => Swal.fire({--}}
-{{--                            html: '{{ __('basemodule::message.start_and_end_status_no_same') }}',--}}
-{{--                            icon: 'info',--}}
-{{--                            confirmButtonText: '{{ __("basemodule::operation.confirm") }}',--}}
-{{--                            buttonsStyling: false,--}}
-{{--                            customClass: { confirmButton: 'btn btn-primary' },--}}
-{{--                            allowOutsideClick: true,--}}
-{{--                        })--}}
-{{--                    };--}}
-{{--                }--}}
+                if (isStartActive && isEndActive) {
+                    return {
+                        valid: false,
+                        action: () => Swal.fire({
+                            html: '{{ __('basemodule::message.start_and_end_status_no_same') }}',
+                            icon: 'info',
+                            confirmButtonText: '{{ __("basemodule::operation.confirm") }}',
+                            buttonsStyling: false,
+                            customClass: { confirmButton: 'btn btn-primary' },
+                            allowOutsideClick: true,
+                        })
+                    };
+                }
 
-{{--                return { valid: true };--}}
-{{--            }--}}
+                return { valid: true };
+            }
 
-{{--            async function checkAlreadyActiveStatus() {--}}
-{{--                const isStartChecked = $(`[name='is_start']:checked`);--}}
-{{--                if (isStartChecked.val() !== activeStatus) {--}}
-{{--                    return { valid: true };--}}
-{{--                }--}}
+            async function checkAlreadyActiveStatus() {
+                const isStartChecked = $(`[name='is_start']:checked`);
+                if (isStartChecked.val() !== activeStatus) {
+                    return { valid: true };
+                }
 
-{{--                try {--}}
-{{--                    const response = await $.ajax({--}}
-{{--                        url: "{{ route('admin.api.v1.base-module.statuses.check_exist_active_status') }}",--}}
-{{--                        type: "post",--}}
-{{--                        data: {--}}
-{{--                            _token: "{{ csrf_token() }}",--}}
-{{--                            field: 'is_start',--}}
-{{--                            table: 'course_statuses'--}}
-{{--                        }--}}
-{{--                    });--}}
+                try {
+                    const response = await $.ajax({
+                        url: "{{ route('admin.api.v1.base-module.statuses.check_exist_active_status') }}",
+                        type: "post",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            field: 'is_start',
+                            table: 'course_statuses'
+                        }
+                    });
 
-{{--                    if (response.data.statusExists) {--}}
-{{--                        return {--}}
-{{--                            valid: false,--}}
-{{--                            action: () => Swal.fire({--}}
-{{--                                html: getMessageBasedOnField('is_start', response.data.statusTitle),--}}
-{{--                                icon: "info",--}}
-{{--                                buttonsStyling: false,--}}
-{{--                                showCancelButton: true,--}}
-{{--                                confirmButtonText: '{{__('basemodule::operation.confirm')}}',--}}
-{{--                                cancelButtonText: '{{__('basemodule::operation.cancel')}}',--}}
-{{--                                customClass: {--}}
-{{--                                    confirmButton: "btn btn-primary",--}}
-{{--                                    cancelButton: 'btn btn-danger'--}}
-{{--                                }--}}
-{{--                            }).then((result) => {--}}
+                    if (response.data.statusExists) {
+                        return {
+                            valid: false,
+                            action: () => Swal.fire({
+                                html: getMessageBasedOnField('is_start', response.data.statusTitle),
+                                icon: "info",
+                                buttonsStyling: false,
+                                showCancelButton: true,
+                                confirmButtonText: '{{__('basemodule::operation.confirm')}}',
+                                cancelButtonText: '{{__('basemodule::operation.cancel')}}',
+                                customClass: {
+                                    confirmButton: "btn btn-primary",
+                                    cancelButton: 'btn btn-danger'
+                                }
+                            }).then((result) => {
 
-{{--                                console.log(result)--}}
-{{--                                if (result.isConfirmed) {--}}
-{{--                                    $('#create-course-status').submit();--}}
-{{--                                } else {--}}
-{{--                                    $(`[name='is_start'][value='${deactiveStatus}']`).prop("checked", true);--}}
-{{--                                }--}}
-{{--                                $("button[type='button']").removeClass("disabled");--}}
-{{--                            })--}}
-{{--                        };--}}
-{{--                    }--}}
+                                console.log(result)
+                                if (result.isConfirmed) {
+                                    $('#create-course-status').submit();
+                                } else {
+                                    $(`[name='is_start'][value='${deactiveStatus}']`).prop("checked", true);
+                                }
+                                $("button[type='button']").removeClass("disabled");
+                            })
+                        };
+                    }
 
-{{--                    return { valid: true };--}}
+                    return { valid: true };
 
-{{--                } catch (err) {--}}
-{{--                    return { valid: true };--}}
-{{--                }--}}
-{{--            }--}}
+                } catch (err) {
+                    return { valid: true };
+                }
+            }
 
-{{--            async function runValidations() {--}}
-{{--                const checks = [--}}
-{{--                    checkStartEndConflict,--}}
-{{--                    checkAlreadyActiveStatus--}}
-{{--                ];--}}
+            async function runValidations() {
+                const checks = [
+                    checkStartEndConflict,
+                    checkAlreadyActiveStatus
+                ];
 
-{{--                for (const check of checks) {--}}
-{{--                    const result = await check();--}}
-{{--                    if (!result.valid) {--}}
-{{--                        if (typeof result.action === "function") {--}}
-{{--                            await result.action();--}}
-{{--                        }--}}
-{{--                        return false;--}}
-{{--                    }--}}
-{{--                }--}}
+                for (const check of checks) {
+                    const result = await check();
+                    if (!result.valid) {
+                        if (typeof result.action === "function") {
+                            await result.action();
+                        }
+                        return false;
+                    }
+                }
 
-{{--                return true;--}}
-{{--            }--}}
+                return true;
+            }
 
-{{--            $('#submitBtn').on('click', function(e) {--}}
-{{--                e.preventDefault();--}}
-{{--                $("button[type='button']").addClass("disabled");--}}
+            $('#submitBtn').on('click', function(e) {
+                e.preventDefault();
+                $("button[type='button']").addClass("disabled");
 
-{{--                runValidations().then((allValid) => {--}}
-{{--                    $("button[type='button']").removeClass("disabled");--}}
+                runValidations().then((allValid) => {
+                    $("button[type='button']").removeClass("disabled");
 
-{{--                    if (allValid) {--}}
-{{--                        $('#create-course-status').submit();--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            });--}}
-{{--        </script>--}}
+                    if (allValid) {
+                        $('#create-course-status').submit();
+                    }
+                });
+            });
+        </script>
 
 
 

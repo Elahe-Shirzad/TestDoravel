@@ -3,5 +3,10 @@
     "Bank": true,
     "Location": true,
     "Blog": true,
-    "CourseStatus": true
+    "CourseStatus": true,
+    "CourseWorkflow": true,
+    "Course": true,
+    "CourseLevel": true,
+    "CourseCategory": true,
+    "Instructor": true
 }

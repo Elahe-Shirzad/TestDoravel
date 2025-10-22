@@ -276,6 +276,7 @@ class CourseStatusTable extends BaseTable
             ),
         );
 
+
         $this->addFilter(
             name:'can_update' ,
             label: __('basemodule::field.statuses.can_update'),

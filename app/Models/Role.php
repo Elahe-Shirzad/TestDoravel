@@ -8,11 +8,14 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Bank\Traits\AvailableScopeTrait;
+use Modules\CourseWorkflow\Models\CourseWorkflow;
 
 /**
  * Class Role
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string $slug
@@ -33,7 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Role extends Model
 {
-	use SoftDeletes;
+	use SoftDeletes,AvailableScopeTrait;
 	protected $table = 'roles';
 	public static $snakeAttributes = false;
 
@@ -61,4 +64,9 @@ class Role extends Model
 		'updated_by',
 		'deleted_by'
 	];
+
+    public function courseContentWorkflows(): HasMany|Role
+    {
+        return $this->hasMany(CourseWorkflow::class);
+    }
 }

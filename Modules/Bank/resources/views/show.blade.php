@@ -9,13 +9,13 @@
 {{--        @if(checkPolicy('canUpdate', $bank)->allowed())--}}
             <x-slot:headerActions>
                 <x-button
-                    type="link"
+                    type="modal"
                     icon="fa-regular fa-pen-to-square fs-20"
                     variant="primary"
                     appearance="light"
                     size="xs"
                     type="link"
-                    :href="route('admin.base-information.banks.edit', encryptValue($bank->id))"
+                    :href="route('admin.base-information.banks.edit_status', encryptValue($bank->id))"
                 />
             </x-slot:headerActions>
 {{--        @endif--}}

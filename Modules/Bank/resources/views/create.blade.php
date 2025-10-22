@@ -1,4 +1,12 @@
-<x-default-layout>
+{{--<x-default-layout>--}}
+<x-modal
+    showCloseIcon="true"
+    isNonClosable="true"
+    id="myModal"
+    size="lg"
+
+    title="ویرایش "
+>
 
     <x-card
     :title="getPageTitle()"
@@ -160,4 +168,5 @@
             </script>
     @endpush
 
-</x-default-layout>
+{{--</x-default-layout>--}}
+</x-modal>
