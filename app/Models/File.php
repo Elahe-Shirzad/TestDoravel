@@ -58,7 +58,7 @@ use Modules\TicketDepartment\Models\TicketDepartment;
  * @property Collection|BookDocument[] $book_documents
  * @property Collection|Book[] $books
  * @property Collection|CourseCategory[] $course_categories
- * @property Collection|CourseChapter[] $course_chapters
+ * @property Collection|CourseChapter[] $course-chapters
  * @property Collection|CourseContent[] $course_contents
  * @property Collection|Course[] $courses
  * @property Collection|CourseMember[] $course_members

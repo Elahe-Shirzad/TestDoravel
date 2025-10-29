@@ -4,6 +4,7 @@ namespace Modules\Bank\Generators\Filters;
 
 use Dornica\PanelKit\Generator\Filter\BaseFilter;
 use Dornica\PanelKit\Generator\Filter\Builders\Filter;
+use Modules\Bank\Models\Location;
 use Modules\Location\Enums\Service;
 
 class BankFilter extends BaseFilter
@@ -27,6 +28,15 @@ class BankFilter extends BaseFilter
                         moduleName: "location",
                     )
                 ),
+            Filter::make("square")
+                ->placeholder('میدان')
+//                ->only(["tab_subject_category"])
+                ->items(
+                    prepareSelectComponentData(
+                        source:Location ::class,
+                        labelColumn: "square",
+                    )
+                )
 //            Filter::make("address")
 //                ->placeholder('آدرس')
 //                ->items(prepareSelectComponentData(
@@ -47,6 +57,8 @@ class BankFilter extends BaseFilter
     {
         return [
             'service' => $this->service,
+            'square' => $this->locations,
+
 //            'subject_category' => $this->selectedSubjectCategory,
         ];
     }

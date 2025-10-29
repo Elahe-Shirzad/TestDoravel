@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Course\Http\Controllers\CourseChapterController;
 use Modules\Course\Http\Controllers\CourseController;
 use App\Support\Excluded;
 use Modules\BaseModule\Enums\General\BooleanState;
@@ -130,43 +131,43 @@ Route::middleware('check.workflow')->group(function () {
             ->name('destroy')
             ->title('course::section.destroy_course');
 //
-//        Route::get('/chapters', [CourseChapterController::class, 'index'])
-//            ->name('chapters.index')
-//            ->parentRoute('admin.courses.management.index')
-//            ->title('مدیریت فصل ها');
-//
-//        Route::post('/chapters/store', [CourseChapterController::class, 'store'])
-//            ->name('chapters.store')
-//            ->parentRoute('admin.courses.management.index')
-//            ->title('عملیات درج فصل جدید');
-//
-//        Route::post('/chapters/search', [CourseChapterController::class, 'search'])
-//            ->name('chapters.search')
-//            ->parentRoute('admin.courses.management.index')
-//            ->title('عملیات درج فصل جدید');
-//
-//        Route::prefix('/chapters/{chapter}')
-//            ->as('chapters.')
-//            ->group(function () {
-//                Route::get('show', [CourseChapterController::class, 'show'])
-//                    ->name('show')
-//                    ->parentRoute('admin.courses.management.index')
-//                    ->title('جزئیات فصل');
-//
-//                Route::get('edit', [CourseChapterController::class, 'edit'])
-//                    ->name('edit')
-//                    ->parentRoute('admin.courses.management.index')
-//                    ->title('ویرایش فصل');
-//
-//                Route::post('update', [CourseChapterController::class, 'update'])
-//                    ->name('update')
-//                    ->parentRoute('admin.courses.management.index')
-//                    ->title('عملیات ویرایش فصل');
-//
-//                Route::delete('destroy', [CourseChapterController::class, 'destroy'])
-//                    ->name('destroy')
-//                    ->parentRoute('admin.courses.management.index')
-//                    ->title('جزئیات فصل');
+        Route::get('/chapters', [CourseChapterController::class, 'index'])
+            ->name('chapters.index')
+            ->parentRoute('admin.courses.management.index')
+            ->title('مدیریت فصل ها');
+
+        Route::post('/chapters/store', [CourseChapterController::class, 'store'])
+            ->name('chapters.store')
+            ->parentRoute('admin.courses.management.index')
+            ->title('عملیات درج فصل جدید');
+
+        Route::post('/chapters/search', [CourseChapterController::class, 'search'])
+            ->name('chapters.search')
+            ->parentRoute('admin.courses.management.index')
+            ->title('عملیات درج فصل جدید');
+
+        Route::prefix('/chapters/{chapter}')
+            ->as('chapters.')
+            ->group(function () {
+                Route::get('show', [CourseChapterController::class, 'show'])
+                    ->name('show')
+                    ->parentRoute('admin.courses.management.index')
+                    ->title('جزئیات فصل');
+
+                Route::get('edit', [CourseChapterController::class, 'edit'])
+                    ->name('edit')
+                    ->parentRoute('admin.courses.management.index')
+                    ->title('ویرایش فصل');
+
+                Route::post('update', [CourseChapterController::class, 'update'])
+                    ->name('update')
+                    ->parentRoute('admin.courses.management.index')
+                    ->title('عملیات ویرایش فصل');
+
+                Route::delete('destroy', [CourseChapterController::class, 'destroy'])
+                    ->name('destroy')
+                    ->parentRoute('admin.courses.management.index')
+                    ->title('جزئیات فصل');
 //
 //                Route::prefix('contents')
 //                    ->as('contents.')
@@ -231,7 +232,7 @@ Route::middleware('check.workflow')->group(function () {
 //                                    ->title('عملیات ویرایش جلسه');
 //                            });
 //                    });
-//            });
+            });
 
     });
 

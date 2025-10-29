@@ -42,6 +42,13 @@ class CourseTable extends BaseTable
     public function columns(): void
     {
         $this->addColumn(
+            name: 'image_id',
+            label: __('basemodule::field.image'),
+            type: 'image',
+        );
+
+
+        $this->addColumn(
             name: 'title',
             label: __('course::field.course_title'),
             type: function ($value, $entity) {

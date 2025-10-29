@@ -103,7 +103,7 @@ return [
     'links_settings' => 'تنظیمات پیوندها',
     'related_blogs' => 'مطالب مرتبط',
     'status_accesses' => 'وضعیت های قابل انتقال',
-    'course_chapters' => 'لیست فصل ها',
+    'course-chapters' => 'لیست فصل ها',
     'course_contents' => 'لیست جلسات',
     'course_info' => 'اطلاعات دوره',
     'courseContents' => "جلسات"

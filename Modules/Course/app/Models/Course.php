@@ -80,7 +80,7 @@ use Modules\Instructor\Models\Instructor;
  * @property File|null $file
  * @property Instructor|null $instructor
  * @property CourseLevel|null $course_level
- * @property Collection|CourseChapter[] $course_chapters
+ * @property Collection|CourseChapter[] $course-chapters
  * @property Collection|CourseComment[] $course_comments
  * @property Collection|CourseContent[] $course_contents
  * @property Collection|CourseFavorite[] $course_favorites
@@ -185,6 +185,11 @@ class Course extends Model
     public function image(): BelongsTo
     {
         return $this->belongsTo(File::class, 'image_id');
+    }
+
+    public function coverImage(): BelongsTo
+    {
+        return $this->belongsTo(File::class, 'cover_image');
     }
 
     public function file()

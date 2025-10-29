@@ -66,13 +66,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
-        ],
+//        'users' => [
+//            'driver' => 'eloquent',
+//            'model' => env('AUTH_MODEL', App\Models\User::class),
+//        ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' =>\Dornica\AccessHub\Authentication\Models\User::class,
+            'model' => Admin::class,
         ],
     ],
 

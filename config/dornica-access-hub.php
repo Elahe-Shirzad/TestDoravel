@@ -55,7 +55,7 @@ return [
         'user_role_permission' => Dornica\AccessHub\Authorization\Models\UserRolePermission::class,
 
         // Authentication
-        'user' => Dornica\AccessHub\Authentication\Models\User::class,
+        'user' => \App\Models\Admin::class,
         'user_activation' => Dornica\AccessHub\Authentication\Models\UserActivation::class,
         'user_login_log' => Dornica\AccessHub\Authentication\Models\UserLoginLog::class,
         'user_failed_login_log' => Dornica\AccessHub\Authentication\Models\UserFailedLoginLog::class,

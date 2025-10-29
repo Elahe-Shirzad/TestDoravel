@@ -29,7 +29,7 @@ class RegenerateUpdatedAtRequest extends FormRequest
                 'required',
                 'string',
                 'max:30',
-                'in:books,questions,blogs,subject_contents,teachers,links,courses,course_chapters,instructors'
+                'in:books,questions,blogs,subject_contents,teachers,links,courses,course-chapters,instructors'
             ],
 
             'model' => [

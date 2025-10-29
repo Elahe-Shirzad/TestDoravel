@@ -9,12 +9,12 @@
     */
 
     /* Primary */
-    --bs-primary: #bf247d;
-    --bs-primary-active: #ac2071;
-    --x-primary-active-2: #991d64;
-    --x-primary-clarity-20: #861958;
-    --x-primary-clarity-25: #73164b;
-    --x-primary-light: #73164b;
+    --bs-primary: #24bf92;
+    --bs-primary-active: #20ac83;
+    --x-primary-active-2: #8d9e73;
+    --x-primary-clarity-20: #198666;
+    --x-primary-clarity-25: #167358;
+    --x-primary-light: #126049;
     --x-primary-light-2: #4c0e32;
     --bs-primary-light: var(--x-primary-light);
 
